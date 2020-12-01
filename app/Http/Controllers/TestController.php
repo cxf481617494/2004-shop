@@ -24,13 +24,13 @@ class TestController extends Controller
        //    echo  $_GET["echostr"];
        // }
         //回复消息
-        $ress = $this->infocode();
+         $this->infocode();
 
         //创建标签
        // $tags = $this->tags();
         //自定义菜单
-      $menu = $this->msgeon();
-      echo $ress;
+      // $this->msgeon();
+      // echo $ress;
        //下载临时素材
 //        $menuxiazai = $this->menuxiazai();
 //        print_r($menuxiazai);
