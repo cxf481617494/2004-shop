@@ -19,12 +19,12 @@ class TestController extends Controller
 {
     //微信接入
     public function index(){
-//        $res = $this->checkSignature();
-//        if($res){
-//           echo  $_GET["echostr"];
-//        }
+       $res = $this->checkSignature();
+       if($res){
+          echo  $_GET["echostr"];
+       }
         //回复消息
-        $ress = $this->infocode();
+        // $ress = $this->infocode();
         //创建标签
 //        $tags = $this->tags();
         //自定义菜单
