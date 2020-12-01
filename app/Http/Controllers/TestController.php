@@ -25,11 +25,12 @@ class TestController extends Controller
        // }
         //回复消息
         $ress = $this->infocode();
+        
         //创建标签
        // $tags = $this->tags();
         //自定义菜单
       $menu = $this->msgeon();
-//       print_r($menu);
+      print_r($ress);
        //下载临时素材
 //        $menuxiazai = $this->menuxiazai();
 //        print_r($menuxiazai);
