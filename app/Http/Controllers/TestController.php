@@ -198,6 +198,7 @@ class TestController extends Controller
                     $array = ["你好啊", "欢迎关注!!!"];
                     $Content = $array[array_rand($array, 1)];
                     $this->info($postarray, $Content);
+
                     //入库
                     $data = [
                         "openid" => $user["openid"],
@@ -462,7 +463,8 @@ class TestController extends Controller
                   <Content><![CDATA[%s]]></Content>
                 </xml>";
         $info = sprintf($xml,$ToUserName,$FromUserName,$CreateTime,$MsgType,$Content);
-        Log::info("===!!!===".$info);
+        // Log::info("===!!!===".$info);
+         file_put_contents("2004error.log",$info);
         echo    $info;
     }
     //微信接入
