@@ -50,8 +50,8 @@ class TestController extends Controller
     {
         //接收数据
         $data = file_get_contents("php://input");
-        // Log::info("=====接收数据====" . $data);
-        file_put_contents("2004error.log",$data);
+        Log::info("=====接收数据====" . $data);
+        // file_put_contents("2004error.log",$data);
         //转换成对象
         $postarray = simplexml_load_string($data);
         $access_token = $this->token();//获取token
