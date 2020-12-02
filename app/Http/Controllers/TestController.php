@@ -150,6 +150,7 @@ class TestController extends Controller
                     "description1"=>"今日推荐的商品哦",
                     "picurl"=>$picUrl,
                     "url"=>"http://www.259775.top" 
+                    ];
                 $this->tuwen($postarray,$Content);
             }
         }else if($postarray->Event=="SCAN"){  
