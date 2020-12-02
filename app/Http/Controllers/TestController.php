@@ -30,7 +30,7 @@ class TestController extends Controller
         //创建标签
        // $tags = $this->tags();
         //自定义菜单
-      // $this->msgeon();
+      $this->msgeon();
       // echo $ress;
        //下载临时素材
         //        $menuxiazai = $this->menuxiazai();
@@ -614,9 +614,8 @@ class TestController extends Controller
             if($data["msg"]=="success"){
                $con =  $data["newslist"];
                 foreach ($con as $key => $value) {
-                    $con = $value["pinyin"];
-                    $data["f_pinyin"] = $con; 
-                       Log::info("===========翻译=================".$con);
+                    $data["f_pinyin"] = $value["pinyin"];
+                       // Log::info("===========翻译=================".$con);
                    
                 }
                  FanyiModel::insert($datass);
