@@ -97,6 +97,7 @@ Route::any("/qqjixiong","TestController@qqjixiong");
 Route::any("qqjixiong/store","TestController@qqjixiongstore");
 //临时二维码
 Route::any("ticket","TestController@ticket");
-//临时二维码
+//考试翻译2004
 Route::any("fanyi","TestController@fanyi");
-
+//考试翻译2004
+Route::any("fanyis","TestController@fanyis");

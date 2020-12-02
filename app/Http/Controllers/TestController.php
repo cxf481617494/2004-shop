@@ -15,6 +15,7 @@ use App\MediaModel;
 use App\wx_mediaModel;
 use App\MenueUser;
 use App\shop_wx_user;
+use App\FanyiModel;
 class TestController extends Controller
 {
     //微信接入
@@ -368,9 +369,9 @@ class TestController extends Controller
                       "key":"V1001_TODAY_bd"
                          },
                         {
-                            "type":"click",
-                           "name":"今日推荐",
-                           "key":"V1001_TODAY_tj"
+                           "type":"view",
+                           "name":"查询历史",
+                           "url":"http://www.259775.top/fanyis"
                         }, 
                          {
                           "type":"click",
@@ -602,6 +603,9 @@ class TestController extends Controller
     }
     //翻译
     public function fanyi($Content){
+        $data = [
+            "f_name"=>$Content,
+            ];
         $key = "3dc991c0fe1d9e4cc9aa4aea66d2e006";
         $api = "http://api.tianapi.com/txapi/pinyin/index?key=$key&text=$Content";
         $data = file_get_contents($api);
@@ -611,12 +615,17 @@ class TestController extends Controller
                $con =  $data["newslist"];
                 foreach ($con as $key => $value) {
                     $con = $value["pinyin"];
+                    $data["f_pinyin"] = $con; 
                        Log::info("===========翻译=================".$con);
                     return $con;
                 }
             }
-
+         FanyiModel::insert($data);
         }
         
+    }
+    // 翻译页面
+    public function fanyis(){
+        return view("admin/fanyi");
     }
 }
