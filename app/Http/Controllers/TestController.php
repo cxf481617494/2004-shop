@@ -604,7 +604,7 @@ class TestController extends Controller
     //翻译
     public function fanyi($Content){
         $sqlss = FanyiModel::where("f_name",$Content)->count();
-        if($sqlss<1){
+        if($sqlss>1){
              $sqlss = FanyiModel::where("f_name",$Content)->value("f_pinyin");
              return $sqlss;
         }else{
@@ -624,7 +624,7 @@ class TestController extends Controller
                    
                 }
                  FanyiModel::insert($datass);
-                 $pinyin = "第一次查询".$datass["f_pinyin"];
+                 $pinyin = "第一次查询:".$datass["f_pinyin"];
                  return $pinyin;
             }
         }
