@@ -32,22 +32,22 @@ class TestController extends Controller
       // $this->msgeon();
       // echo $ress;
        //下载临时素材
-//        $menuxiazai = $this->menuxiazai();
-//        print_r($menuxiazai);
+        //        $menuxiazai = $this->menuxiazai();
+        //        print_r($menuxiazai);
 
-        //获取token
-//        $access_token = $this->token();
-//	    print_r($access_token);
-        //临时素材管理
-//        $mediia = $this->mediia();
-//        print_r($access_token);
-//        $getuserinfo = $this->getuserinfo();
-//        $resmsg = $this->resmsg();
-//        print_r($resmsg);
+                //获取token
+        //        $access_token = $this->token();
+        //	    print_r($access_token);
+                //临时素材管理
+        //        $mediia = $this->mediia();
+        //        print_r($access_token);
+        //        $getuserinfo = $this->getuserinfo();
+        //        $resmsg = $this->resmsg();
+        //        print_r($resmsg);
     }
     //自动回复
-    public function  infocode()
-    {
+    public function  infocode(){
+    
         //接收数据
         $data = file_get_contents("php://input");
         Log::info("=====接收数据====" . $data);
@@ -55,15 +55,15 @@ class TestController extends Controller
         //转换成对象
         $postarray = simplexml_load_string($data);
         $access_token = $this->token();//获取token
-//        $lat = $postarray->Latitude;
-//        //经度
-//        $lng = $postarray->Longitude;
-//        if($postarray->MsgType=="text"){
-//            if($postarray->Content=="天气"){
-//                $Content = $this->getweather();
-//                $this->info($postarray,$Content);
-//            }
-//        }
+        //        $lat = $postarray->Latitude;
+        //        //经度
+        //        $lng = $postarray->Longitude;
+        //        if($postarray->MsgType=="text"){
+        //            if($postarray->Content=="天气"){
+        //                $Content = $this->getweather();
+        //                $this->info($postarray,$Content);
+        //            }
+        //        }
         //判断是否是图片信息
         $data = [];
         if($postarray->MsgType=="image"){
@@ -76,7 +76,7 @@ class TestController extends Controller
             ];
             $image = new MenueUser();
             $image->insert($data);
-//            $insertId =DB::table("menueuser")->max("m_id");
+            //            $insertId =DB::table("menueuser")->max("m_id");
             $this->menuxiazai($postarray->MediaId);
         }else if($postarray->MsgType=="text"){
             $data[] = [
@@ -97,7 +97,7 @@ class TestController extends Controller
             ];
             $image = new MenueUser();
             $image->insert($data);
-//            $insertId =DB::table("menueuser")->max("m_id");
+            //            $insertId =DB::table("menueuser")->max("m_id");
             $this->menuxiazai($postarray->MediaId);
         }else if($postarray->MsgType=="voice"){
             $data[] = [
@@ -110,8 +110,8 @@ class TestController extends Controller
             ];
             $image = new MenueUser();
             $image->insert($data);
-//            $insertId =DB::table("menueuser")->max("m_id");
-//            Log::info("=====insertId=======".$insertId);
+                //            $insertId =DB::table("menueuser")->max("m_id");
+                //            Log::info("=====insertId=======".$insertId);
             $this->menuxiazai($postarray->MediaId);
         }else if($postarray->Event=="CLICK"){
             if($postarray->EventKey=="V1001_TODAY_QQ"){
@@ -127,13 +127,13 @@ class TestController extends Controller
                     $this->info($postarray,$Content);
                 }
            }else if($postarray->EventKey=="V1001_TODAY_weather"){
-//                $city = $this->geo($lat,$lng);
+            //                $city = $this->geo($lat,$lng);
                 $city = $this->geo();
                 $Content = $this->getweather($city);
                 $this->info($postarray,$Content);
             }else if($postarray->EventKey=="V1001_TODAY_bd"){
-//                $url = "http://www.259775.top/getuserinfo";
-//                redirect($url);
+                //                $url = "http://www.259775.top/getuserinfo";
+                //                redirect($url);
                 $code = $this->getuserinfo();
                 Log::info("=========调用授权============".$code);
                 if(!empty($code)){
@@ -149,22 +149,21 @@ class TestController extends Controller
                     "title"=>"客官,您好啊!!!",
                     "description1"=>"今日推荐的商品哦",
                     "picurl"=>$picUrl,
-                    "url"=>"http://www.259775.top"
-                ];
+                    "url"=>"http://www.259775.top" 
                 $this->tuwen($postarray,$Content);
             }
-        }else if($postarray->Event=="SCAN"){
+        }else if($postarray->Event=="SCAN"){  
             $eventkey = $postarray->EventKey;
-//            $data = json_encode($eventkey);
-//            $data = json_decode($data);
+            //            $data = json_encode($eventkey);
+            //            $data = json_decode($data);
             $incident = mb_substr($eventkey,0,13,'UTF-8');
             Log::info("================获取====================".$incident);
             if($incident == "\u7ed1\u5b9a:"){
                 $user_id = ltrim($eventkey,$incident);
                 Log::info("================获取1====================".$user_id);
-//            $result = $this->user_bind($postarray,$user_id);
+                //            $result = $this->user_bind($postarray,$user_id);
 
-//            return $result;
+                //            return $result;
             }
         }
 
@@ -172,27 +171,32 @@ class TestController extends Controller
 
 
 
-//        if($postarray->EventKey=="qrscene_0"){
-//            $open_id = $postarray->FromUserName;//用户openid
-//            $open_id = shop_wx_user::where("user_open_id",$open_id)->first();
-////            if($open_id==""){
-////                $data = [
-////                    "user_id" =>
-////                    "user_open_id" => $open_id,
-////
-////                ];
-////                $open_id = shop_wx_user::where("user_open_id",$open_id)->first();
-////            }
-//            Log::info("======openid=========".$open_id);
-//        }
+            //        if($postarray->EventKey=="qrscene_0"){
+            //            $open_id = $postarray->FromUserName;//用户openid
+            //            $open_id = shop_wx_user::where("user_open_id",$open_id)->first();
+            ////            if($open_id==""){
+            ////                $data = [
+            ////                    "user_id" =>
+            ////                    "user_open_id" => $open_id,
+            ////
+            ////                ];
+            ////                $open_id = shop_wx_user::where("user_open_id",$open_id)->first();
+            ////            }
+            //            Log::info("======openid=========".$open_id);
+            //        }
         $openid = $postarray->FromUserName;//获取发送方的 openid
         $url = "https://api.weixin.qq.com/cgi-bin/user/info?access_token=" . $access_token . "&openid=" . $openid . "&lang=zh_CN";
         $user = json_decode($this->http_get($url), true);
         $WexiinModel = new WeixinModel;
         $first = WeixinModel::where("openid", $user["openid"])->first();
         if ($first) {
-            $Content = "欢迎回来哦";
-            $this->info($postarray, $Content);
+            $Conttent = $postarray->Content;//获取用户发送信息
+            $tchr = $this->fanyi($Content);//返回封装好的方法
+            $this->info($postarray, $tchr);
+
+            // $this->fanyi($Content);
+            // $Content = "欢迎回来哦";
+           
         } else {
                 if ($postarray->Event == "subscribe") {
                     $array = ["你好啊", "欢迎关注!!!"];
@@ -214,12 +218,12 @@ class TestController extends Controller
                     $WexiinModel->insert($data);
                 }
             }
-         }
-            //调用用户地理位置
+    }     
+    //调用用户地理位置      
     public function geo(){
-//        $url = "http://apis.juhe.cn/geo/?key=2862c30552f4698fd7e65baf5b6a3302&lat=$lat&lng=$lng&type=1";
-//        $data = file_get_contents($url);
-//        Log::info("=========用户地理位置=============".$data);
+        //        $url = "http://apis.juhe.cn/geo/?key=2862c30552f4698fd7e65baf5b6a3302&lat=$lat&lng=$lng&type=1";
+        //        $data = file_get_contents($url);
+        //        Log::info("=========用户地理位置=============".$data);
         $data = '{
                 "resultcode":"200",
                 "reason":"success",
@@ -258,8 +262,6 @@ class TestController extends Controller
         }
         return $content;
         Log::info("=========城市1=============".$content);
-
-
     }
     //下载临时素材
     public function menuxiazai($media_id){
@@ -268,8 +270,8 @@ class TestController extends Controller
         $data =   new MenueUser();
         $url = "https://api.weixin.qq.com/cgi-bin/media/get?access_token=$access_token&media_id=$media_id";
         Log::info("======临时素材=======".$url);
-//        $data = file_get_contents($url);
-//        $res = file_put_contents("cat.jpg",$data);
+        //        $data = file_get_contents($url);
+        //        $res = file_put_contents("cat.jpg",$data);
         $client = new client();
         $response = $client->get($url);
         // 得到头部信息
@@ -277,7 +279,7 @@ class TestController extends Controller
         $file_name = $response->getHeader('Content-disposition')[0];
 
         $file_type = 'static/'.$response->getHeader('Content-Type')[0];
-//        Log::info("=====file_type=====".$file_type);
+       // Log::info("=====file_type=====".$file_type);
         // 判断有无 文件夹 没有 则创建多层文件夹
         $adddir=$file_type.date("/Ymd/",time());
         if(!is_dir($adddir)){
@@ -290,7 +292,6 @@ class TestController extends Controller
         $client->get($url,['save_to'=>$file_path]);
         $image = new MenueUser();
         $image->where("m_id",$insertId)->update(["local_file"=>$file_path]);
-
     }
     //临时素材管理
     public function mediia(){
@@ -318,7 +319,7 @@ class TestController extends Controller
     }
     //3.回复天气模板
     public function getweather($city){
-//        $city = $city;
+       // $city = $city;
         $url = "http://api.k780.com:88/?app=weather.future&weaid=$city&&appkey=10003&sign=b59bc3ef6191eb9f747dd4e83c99f2a4&format=json";
         $weather = file_get_contents($url);
         Log::info("==============weather=================".$url);
@@ -350,8 +351,6 @@ class TestController extends Controller
         }
         return $content;
         Log::info("======qq吉凶======".$data);
-
-
     }
     //自定义菜单
     public function msgeon(){
@@ -400,16 +399,17 @@ class TestController extends Controller
                    }]
              }';
         $data = $this->curl($url,$menu);
-     }
-    //qq测吉凶首页
+    }
+     //qq测吉凶首页
     public function qqjixiong(){
         return view("qqjixiong/index");
     }
+    //qq吉凶
     public function qqjixiongstore(){
         $q_name = request()->q_name;
-//        dd($q_name);
+       // dd($q_name);
         $data = $this->qqjx($q_name);
-    return json_encode(["msg"=>"执行成功","code"=>"0000","data"=>$data]);
+     return json_encode(["msg"=>"执行成功","code"=>"0000","data"=>$data]);
     }
     //获取code
     public function getuserinfo(){
@@ -438,16 +438,12 @@ class TestController extends Controller
             Log::info("============普通授权============".$userss);
             $users = json_decode($userss,true);
             return $users;
-//            return RedirectToAction("weixinlogin", "UserController");
-//            header("location:".$url);
-//            return redirect('/'.$users["name"]);
+            //            return RedirectToAction("weixinlogin", "UserController");
+            //            header("location:".$url);
+            //            return redirect('/'.$users["name"]);
 
-//            return view("home.index",["users",$users]);
+            //            return view("home.index",["users",$users]);
         }
-
-
-
-
     }
     //发送文字消息
     public function info($postarray,$Content){
@@ -468,8 +464,7 @@ class TestController extends Controller
         echo    $info;
     }
     //微信接入
-    private function checkSignature()
-    {
+    private function checkSignature(){
         $signature = $_GET["signature"];
         $timestamp = $_GET["timestamp"];
         $nonce = $_GET["nonce"];
@@ -492,15 +487,15 @@ class TestController extends Controller
         if(!$tokens){
             $url = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=".env('WX_APPID')."&secret=".env("WX_APPSE");
             //使用file_get_contents发送请求
-//            $token = file_get_contents($url);
+           // $token = file_get_contents($url);
             //使用Guzzle发送get请求
             $client = new Client();//实例化客户端
             $response = $client->request("GET",$url);//发起请求并接收响应
             $token = $response->getBody();//服务器响应数据
             $token = json_decode($token,true);
-//            dd($token);
+            //dd($token);
             $tokens = $token["access_token"];
-//            dd($tokens);
+           // dd($tokens);
             Redis::setex("token",3600,$tokens);
         }
         return $tokens;
@@ -524,7 +519,7 @@ class TestController extends Controller
     }
     //过滤https请求(2)
     public function http_get($url){
-//        Log::info("--------------------123");
+        //Log::info("--------------------123");
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $url);//向那个url地址上面发送
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
@@ -533,7 +528,7 @@ class TestController extends Controller
         $output = curl_exec($ch);//执行
         curl_close($ch);    //关闭
         return $output;
- }
+    }
     //用户标签
     public function tags(){
         $access_token = $this->token();
@@ -549,9 +544,9 @@ class TestController extends Controller
     //生成临时二维码
     public function ticket(){
         $access_token  = $this->token();
-//        $user_id = session('user_id');
+        //$user_id = session('user_id');
         $user_id = 1;
-//        dd($user_id);
+        //dd($user_id);
         if(empty($user_id)) {
             return redirect('/user/login')->with(['msg'=>'请先登录']);
         }
@@ -567,17 +562,16 @@ class TestController extends Controller
         ];
         $data = json_encode($data);
         $ticket = $this->curl($url,$data."UTF-8");
-//        dd($ticket);
+        //dd($ticket);
         $data = json_decode($ticket,true);
         Log::info("==========获取ticket============".$data);
-//        dd($data);
+        //dd($data);
         $ticket = $data["ticket"];
         if(empty($ticket)){
             echo "获取失败,请稍后重试";die;
         }
         $urs = "https://mp.weixin.qq.com/cgi-bin/showqrcode?ticket=$ticket";
         return redirect($urs);
-
     }
     //发送图文消息
     public function tuwen($postarray,$Content){
@@ -605,7 +599,8 @@ class TestController extends Controller
         Log::info("===!!!===".$info);
         echo    $info;
     }
-
-
-
+    //翻译
+    public function fanyi($Content){
+        Log::info("===========翻译=================".$Content);
+    }
 }
