@@ -603,7 +603,7 @@ class TestController extends Controller
     }
     //翻译
     public function fanyi($Content){
-        $data = [
+        $datass = [
             "f_name"=>$Content,
             ];
         $key = "3dc991c0fe1d9e4cc9aa4aea66d2e006";
@@ -619,8 +619,9 @@ class TestController extends Controller
                        Log::info("===========翻译=================".$con);
                    
                 }
-                 FanyiModel::insert($data);
-                 return $data["f_pinyin"];
+                 FanyiModel::insert($datass);
+                 $pinyin = $datass["f_pinyin"];
+                 return $pinyin;
             }
         }
         
