@@ -603,7 +603,7 @@ class TestController extends Controller
     //翻译
     public function fanyi($Content){
         $key = "3dc991c0fe1d9e4cc9aa4aea66d2e006";
-        $api = "http://api.tianapi.com/txapi/pinyin/index?key=$key".&."text=$Content";
+        $api = "http://api.tianapi.com/txapi/pinyin/index?key=$key&text=$Content";
         Log::info("===========翻译=================".$api);
     }
 }
