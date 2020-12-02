@@ -7,11 +7,13 @@
 <body>
 	<table border=1>
 		<tr>
+			<td>编号</td>
 			<td>名称</td>
 			<td>拼音</td>
 		</tr>
 		@foreach($data as $v)
 		<tr>
+			<td>{{$V->f_id}}</td>
 			<td>{{$v->f_name}}</td>
 			<td>{{$v->f_pinyin}}</td>
 		</tr>
