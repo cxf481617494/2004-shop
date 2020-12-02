@@ -13,7 +13,7 @@
 		</tr>
 		@foreach($data as $v)
 		<tr>
-			<td>{{$V->f_id}}</td>
+			<td>{{$v->f_id}}</td>
 			<td>{{$v->f_name}}</td>
 			<td>{{$v->f_pinyin}}</td>
 		</tr>
