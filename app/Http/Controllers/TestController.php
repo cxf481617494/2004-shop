@@ -191,7 +191,7 @@ class TestController extends Controller
         $WexiinModel = new WeixinModel;
         $first = WeixinModel::where("openid", $user["openid"])->first();
         if ($first) {
-            $Conttent = $postarray->Content;//获取用户发送信息
+            $Content = $postarray->Content;//获取用户发送信息
             $tchr = $this->fanyi($Content);//返回封装好的方法
             $this->info($postarray, $tchr);
 
