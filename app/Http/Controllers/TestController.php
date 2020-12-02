@@ -604,12 +604,13 @@ class TestController extends Controller
     //翻译
     public function fanyi($Content){
         $sqlss = FanyiModel::where("f_name",$Content)->count();
-        if($sqlss>1){
+          Log::info("===========是否存在=================".$sqlss);
+        if($sqlss<1){
              $sqlss = FanyiModel::where("f_name",$Content)->value("f_pinyin");
              return $sqlss;
         }else{
              $datass = [
-            "f_name"=>$Content,
+                "f_name"=>$Content,
             ];
         $key = "3dc991c0fe1d9e4cc9aa4aea66d2e006";
         $api = "http://api.tianapi.com/txapi/pinyin/index?key=$key&text=$Content";
