@@ -608,9 +608,12 @@ class TestController extends Controller
         $data = json_decode($data,true);
         if($data["code"]==200){
             if($data["msg"]=="success"){
-                $con =  $data["newslist"]["pinyin"];
-                Log::info("===========翻译=================".$con);
-                return $con;
+               $con =  $data["newslist"];
+                foreach ($con as $key => $value) {
+                    $con = $value["pinyin"];
+                       Log::info("===========翻译=================".$con);
+                    return $con;
+                }
             }
 
         }
