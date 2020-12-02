@@ -617,10 +617,11 @@ class TestController extends Controller
                     $con = $value["pinyin"];
                     $data["f_pinyin"] = $con; 
                        Log::info("===========翻译=================".$con);
-                    return $con;
+                   
                 }
+                 FanyiModel::insert($data);
+                 return $data["f_pinyin"];
             }
-         FanyiModel::insert($data);
         }
         
     }
