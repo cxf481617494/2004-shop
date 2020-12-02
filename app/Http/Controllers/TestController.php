@@ -614,7 +614,7 @@ class TestController extends Controller
             if($data["msg"]=="success"){
                $con =  $data["newslist"];
                 foreach ($con as $key => $value) {
-                    $data["f_pinyin"] = $value["pinyin"];
+                    $datass["f_pinyin"] = $value["pinyin"];
                        // Log::info("===========翻译=================".$con);
                    
                 }
