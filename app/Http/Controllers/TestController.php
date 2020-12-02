@@ -604,6 +604,14 @@ class TestController extends Controller
     public function fanyi($Content){
         $key = "3dc991c0fe1d9e4cc9aa4aea66d2e006";
         $api = "http://api.tianapi.com/txapi/pinyin/index?key=$key&text=$Content";
-        Log::info("===========翻译=================".$api);
+        $data = file_get_contents($api);
+        $data = json_decode($data,true);
+        if($data["code"]==200){
+            if($data["msg"]=="success"){
+                return $data["newslist"]["pinyin"];
+            }
+
+        }
+        Log::info("===========翻译=================".$data["newslist"]["pinyin"]);
     }
 }
