@@ -603,7 +603,12 @@ class TestController extends Controller
     }
     //翻译
     public function fanyi($Content){
-        $datass = [
+        $sqlss = FanyiModel::where("f_name",$Content)->count();
+        if($sqlss<1){
+             $sqlss = FanyiModel::where("f_name",$Content)->value("f_pinyin");
+             return $sqlss;
+        }else{
+             $datass = [
             "f_name"=>$Content,
             ];
         $key = "3dc991c0fe1d9e4cc9aa4aea66d2e006";
@@ -619,10 +624,12 @@ class TestController extends Controller
                    
                 }
                  FanyiModel::insert($datass);
-                 $pinyin = $datass["f_pinyin"];
+                 $pinyin = "第一次查询".$datass["f_pinyin"];
                  return $pinyin;
             }
         }
+    }
+       
         
     }
     // 翻译页面
