@@ -609,10 +609,11 @@ class TestController extends Controller
         if($data["code"]==200){
             if($data["msg"]=="success"){
                 $con =  $data["newslist"]["pinyin"];
+                Log::info("===========翻译=================".$con);
                 return $con;
             }
 
         }
-        Log::info("===========翻译=================".$con);
+        
     }
 }
