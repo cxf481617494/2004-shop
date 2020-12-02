@@ -608,7 +608,7 @@ class TestController extends Controller
         if($sqlss<=1){
              $sqlss = FanyiModel::where("f_name",$Content)->value("f_pinyin");
              return $sqlss;
-        }else{
+        }else if($sqlss=0){
              $datass = [
                 "f_name"=>$Content,
             ];
