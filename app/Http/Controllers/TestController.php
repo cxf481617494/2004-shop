@@ -605,7 +605,7 @@ class TestController extends Controller
     public function fanyi($Content){
         $sqlss = FanyiModel::where("f_name",$Content)->count();
           Log::info("===========是否存在=================".$sqlss);
-        if($sqlss=<1){
+        if($sqlss<=1){
              $sqlss = FanyiModel::where("f_name",$Content)->value("f_pinyin");
              return $sqlss;
         }else{
