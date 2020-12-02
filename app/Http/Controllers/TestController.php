@@ -635,6 +635,7 @@ class TestController extends Controller
     }
     // 翻译页面
     public function fanyis(){
-        return view("admin/fanyi");
+        $data  = FanyiModel::paginate(10);
+        return view("fanyi/fanyi",["data"=>$data]);
     }
 }
